@@ -1,1 +1,49 @@
 
+Fundamentos de MongoDB e importación de datos
+Plantilla Postwork
+(1) Base de Datos
+Aquí pongan el nombre de su base de datos y la o las colecciones que crearon.
+
+Base de datos: NestorBaezProyecto
+Colecciónes:     
+    fd_iter_cpv
+    iter_00_cpv
+    tam_loc
+    
+    fd_resultados_ageb_urbana_cpv
+    resultados_ageb_urbana_01_cpv ... resultados_ageb_urbana_32_cpv
+    
+ (2) Estructura del archivo CSV
+fd_iter_cpv:
+      numero,indicador,descripcion,mnemonico,rangos,longitud
+
+iter_00_cpv:
+      entidad,nom_ent,mun,nom_mun,loc,nom_loc,longitud,latitud,altitud,pobtot,pobmas,pobfem,p_0a2,p_0a2_m,p_0a2_f,p_3ymas,p_3ymas_m,p_3ymas_f,p_5ymas,p_5ymas_m,p_5ymas_f,p_12ymas,p_12ymas_m,p_12ymas_f,p_15ymas,p_15ymas_m,p_15ymas_f,p_18ymas,p_18ymas_m,p_18ymas_f,p_3a5,p_3a5_m,p_3a5_f,p_6a11,p_6a11_m,p_6a11_f,p_8a14,p_8a14_m,p_8a14_f,p_12a14,p_12a14_m,p_12a14_f,p_15a17,p_15a17_m,p_15a17_f,p_18a24,p_18a24_m,p_18a24_f,p_15a49_f,p_60ymas,p_60ymas_m,p_60ymas_f,rel_h_m,pob0_14,pob15_64,pob65_mas,prom_hnv,pnacent,pnacent_m,pnacent_f,pnacoe,pnacoe_m,pnacoe_f,pres2005,pres2005_m,pres2005_f,presoe05,presoe05_m,presoe05_f,p3ym_hli,p3ym_hli_m,p3ym_hli_f,p3hlinhe,p3hlinhe_m,p3hlinhe_f,p3hli_he,p3hli_he_m,p3hli_he_f,p5_hli,p5_hli_nhe,p5_hli_he,phog_ind,pcon_lim,pclim_mot,pclim_vis,pclim_leng,pclim_aud,pclim_mot2,pclim_men,pclim_men2,psin_lim,p3a5_no
+
+tam_loc:
+      tam_loc,descripcion
+
+fd_resultados_ageb_urbana_cpv:
+      numero,indicador,descripcion,mnemonico,rangos,longitud
+
+resultados_ageb_urbana_01_cpv ... resultados_ageb_urbana_32_cpv:
+      entidad,nom_ent,mun,nom_mun,loc,nom_loc,ageb,mza,pobtot,pobmas,pobfem,p_0a2,p_0a2_m,p_0a2_f,p_3ymas,p_3ymas_m,p_3ymas_f,p_5ymas,p_5ymas_m,p_5ymas_f,p_12ymas,p_12ymas_m,p_12ymas_f,p_15ymas,p_15ymas_m,p_15ymas_f,p_18ymas,p_18ymas_m,p_18ymas_f,p_3a5,p_3a5_m,p_3a5_f,p_6a11,p_6a11_m,p_6a11_f,p_8a14,p_8a14_m,p_8a14_f,p_12a14,p_12a14_m,p_12a14_f,p_15a17,p_15a17_m,p_15a17_f,p_18a24,p_18a24_m,p_18a24_f,p_15a49_f,p_60ymas,p_60ymas_m,p_60ymas_f,rel_h_m,pob0_14,pob15_64,pob65_mas,prom_hnv,pnacent,pnacent_m,pnacent_f,pnacoe,pnacoe_m,pnacoe_f,pres2005,pres2005_m,pres2005_f,presoe05,presoe05_m,presoe05_f,p3ym_hli,p3ym_hli_m,p3ym_hli_f,p3hlinhe,p3hlinhe_m,p3hlinhe_f,p3hli_he,p3hli_he_m,p3hli_he_f,p5_hli,p5_hli_nhe,p5_hli_he,phog_ind,pcon_lim,pclim_mot,pclim_vis,pclim_leng,pclim_aud,pclim_mot2,pclim_men,pclim_men2,psin_lim,p3a5_noa,p3a5_noa_m,p
+
+(3) Consultas
+Mediante una proyeccion y un filtro muestro solo campos para una revision general del contenido de la coleccion 
+  
+  FILTER:    {nom_ent: /\btotal/i}
+  PROJECT:   {entidad:1,nom_ent:1,nom_loc:1  ,pobtot:1, pobmas:1,pobfem:1 }
+
+¿Cuantos registros de Agusacalientes, sin contar Totales, se lograron cargar?
+Solución:
+FILTER: {nom_ent:  /aguascalientes/i, nom_mun: {$nin:[/total/i]  }}
+--2022
+
+¿Cuantos municipios en total se cargaron de Aguascalientes y Baja California Sur?
+Solución:
+FILTER: {nom_ent: {$in: [/Baja California/i, /aguascalientes/i]}, nom_mun: {$nin:[/total/i]  }}
+--9449
+
+
+
