@@ -1,8 +1,8 @@
-###Conectandose a MongoDB Atlas.
+### Conectandose a MongoDB Atlas.
 
-#####El archivo .csv contiene una muestra de la información del estado de Aguascalientes, se han elegido solo algunso campos y un total de 100 registros.
+##### El archivo .csv contiene una muestra de la información del estado de Aguascalientes, se han elegido solo algunso campos y un total de 100 registros.
 
- 1. Se carga el archivo con un total de 101 registros, por lo que hay que eliminar el registro "null" que se carga.
+1. Se carga el archivo con un total de 101 registros, por lo que hay que eliminar el registro "null" que se carga.
    SORT  {_id:-1}
 
    Al registro null:
