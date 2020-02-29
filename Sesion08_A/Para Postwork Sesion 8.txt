@@ -1,0 +1,31 @@
+
+
+El archivo ageb_01_muestra.csv contiene una muestra de la información del estado de Aguascalientes con un total de 100 registros.
+
+1. Se cargó el archivo con un total de 101 registros, por lo que hay que eliminar el registro "null" que se carga.
+	SORT  {_id:-1}
+
+	Al registro null:
+	Delete Document 
+
+	NOTA: Esto ya esta hecho en el archivo compartido
+
+2. 	En Filtro, sobre los 100 registros, encontrar la distribucion de la poblacion por genero de cada area geoestadisticas basicas (ageb) donde la poblacion sea mayor o igual a 50, solo de la manzana 1:
+	FILTER		{mza:"1",pobtot:{$gte:"50"} }
+	PROJECT		{ageb:1,nom_ent:1, mza:1, pobtot:1, pobmas:1, pobfem:1 }
+	SORT		{_id:-1}
+
+3. En Agregacion, intenté convertir el dato de cadena a decimal para obtener la relacion de la poblacion femenina respecto al total
+   me 
+
+add commit push
+
+MARKDOWN
+git remote add origin https://github...
+
+git checkout
+git branch 
+
+echo
+
+cron tareas programas
